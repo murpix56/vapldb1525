@@ -422,6 +422,9 @@ V.ord=(o)=>{HL=null;const O=OM[o.id],g=o.g||'',L=ordList(o);const gs=[...new Set
 function ordPartes(i){const art=String(i.art),a=String(i.apartado),r=(a.startsWith(art)?a.slice(art.length):a).replace(/^[.\s]+/,'').trim();let m;
   if(!r)return['',''];
   if(m=r.match(/^\(([^)]+)\)\s*([a-z])\)?$/i))return[m[1].charAt(0).toUpperCase()+m[1].slice(1),m[2]];
+  if(m=r.match(/^(\d+)\.([a-z])\.(\d+)$/i))return[m[1],m[2]+') '+m[3]];
+  if(m=r.match(/^(\d+)\.(\d+)$/))return[m[1],m[2]];
+  if(m=r.match(/^([a-z])\.(\d+)$/i))return['',m[1]+') '+m[2]];
   if(m=r.match(/^(\d+)\.([a-z])$/i))return[m[1],m[2]];
   if(/^\d+$/.test(r))return[r,''];
   if(/^[a-z]$/i.test(r))return['',r];
